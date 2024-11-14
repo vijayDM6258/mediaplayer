@@ -76,23 +76,23 @@ class _HomePageState extends State<HomePage>
           VideoView(),
         ],
       ),
-      floatingActionButton: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              controller.index = 0;
-            },
-            child: Icon(Icons.arrow_left),
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              controller.index = 1;
-            },
-            child: Icon(Icons.arrow_right),
-          ),
-        ],
-      ),
+      // floatingActionButton: Row(
+      //   mainAxisSize: MainAxisSize.min,
+      //   children: [
+      //     FloatingActionButton(
+      //       onPressed: () {
+      //         controller.index = 0;
+      //       },
+      //       child: Icon(Icons.arrow_left),
+      //     ),
+      //     FloatingActionButton(
+      //       onPressed: () {
+      //         controller.index = 1;
+      //       },
+      //       child: Icon(Icons.arrow_right),
+      //     ),
+      //   ],
+      // ),
     );
 
     // return DefaultTabController(

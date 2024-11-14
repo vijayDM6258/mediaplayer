@@ -1,14 +1,25 @@
-List<String> audioList = [
-  "Eternal Sunrise",
-  "Shattered Dreams",
-  "Chasing Starlight",
-  "Echoes of Yesterday",
-  "Dancing on the Edge",
-  "Lost in the Moment",
-  "City Lights and Lonely Nights",
-  "Heartstrings",
-  "Midnight Melody",
-  "Fading into You",
-  "Wildfire Heart",
-  "Into the Abyss",
+List<AudioFile> audioList = [
+  AudioFile(
+    "name",
+    "https://www.pagalworld.com.sb/files/download/type/320/id/71866/1.mp3?1",
+  ),
+  AudioFile(
+    "name",
+    "https://www.pagalworld.com.sb/files/download/type/320/id/72578/1.mp3?1",
+  ),
+  AudioFile(
+    "name",
+    "https://www.pagalworld.com.sb/files/download/type/320/id/71866/1.mp3?1",
+  ),
+  AudioFile(
+    "name",
+    "https://www.pagalworld.com.sb/files/download/type/320/id/71866/1.mp3?1",
+  ),
 ];
+
+class AudioFile {
+  String? name;
+  String path;
+
+  AudioFile(this.name, this.path);
+}
