@@ -170,30 +170,57 @@ class _AudioViewState extends State<AudioView> {
               ),
             ),
             Container(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
+              color: Colors.green,
+              child: Column(
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        player.previous();
-                      },
-                      icon: Icon(Icons.skip_previous)),
-                  StreamBuilder<bool>(
-                      stream: player.isPlaying,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            player.previous();
+                          },
+                          icon: Icon(Icons.skip_previous)),
+                      StreamBuilder<bool>(
+                          stream: player.isPlaying,
+                          builder: (context, snapshot) {
+                            bool isPlay = snapshot.data ?? false;
+                            return IconButton(
+                                onPressed: () {
+                                  player.playOrPause();
+                                },
+                                icon: Icon(
+                                    isPlay ? Icons.pause : Icons.play_arrow));
+                          }),
+                      IconButton(
+                          onPressed: () {
+                            player.next();
+                          },
+                          icon: Icon(Icons.skip_next)),
+                    ],
+                  ),
+                  StreamBuilder<Playing?>(
+                      stream: player.current,
                       builder: (context, snapshot) {
-                        bool isPlay = snapshot.data ?? false;
-                        return IconButton(
-                            onPressed: () {
-                              player.playOrPause();
-                            },
-                            icon:
-                                Icon(isPlay ? Icons.pause : Icons.play_arrow));
-                      }),
-                  IconButton(
-                      onPressed: () {
-                        player.next();
-                      },
-                      icon: Icon(Icons.skip_next)),
+                        Playing? data = snapshot.data;
+                        Duration? audioDuration = data?.audio.duration;
+                        if (audioDuration?.inSeconds != null) {
+                          return StreamBuilder<Duration>(
+                              stream: player.currentPosition,
+                              builder: (context, snapshot) {
+                                var duration = snapshot.data;
+                                return Slider(
+                                  value: (duration?.inSeconds ?? 0).toDouble(),
+                                  min: 0,
+                                  max: (audioDuration?.inSeconds ?? 1)
+                                      .toDouble(),
+                                  onChanged: (value) {},
+                                );
+                              });
+                        } else {
+                          return CircularProgressIndicator();
+                        }
+                      })
                 ],
               ),
             )
